@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Timetable</title>
+</head>
+<body>
+    <h1>Generated Timetable</h1>
+    <table border="1">
+        <tr>
+            <th>Day</th>
+            {% for slot in time_slots %}
+                <th>{{ slot }}</th>
+            {% endfor %}
+            <th>{{ lunch_break }}</th> <!-- Add lunch break as a heading dynamically -->
+        </tr>
+        {% for day, slots in timetable.items() %}
+        <tr>
+            <td>{{ day }}</td>
+            {% for slot, activity in slots.items() %}
+                <td>{{ activity or "Free" }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <button onclick="window.location.href='/download/word'">Download as Word</button>
+    <br>
+    <a href="/">Go Back</a>
+</body>
+</html>

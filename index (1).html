@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Generator</title>
+</head>
+<body>
+    <h1>Timetable Generator</h1>
+    <form method="POST">
+        <label>Teachers (comma-separated):</label>
+        <input type="text" name="teachers" required><br>
+
+        <label>Time Slots (comma-separated):</label>
+        <input type="text" name="time_slots" required><br>
+
+        <label>Classrooms (comma-separated):</label>
+        <input type="text" name="classrooms" required><br>
+
+        <label>Lunch Break Slot:</label>
+        <input type="text" name="lunch_break" required><br>
+
+        <h2>Subjects</h2>
+        <div id="subjects">
+            <div class="subject">
+                <label>Subject Name:</label>
+                <input type="text" name="subject_name" required>
+                <label>Hours:</label>
+                <input type="number" name="subject_hours" required>
+                <label>Is Lab (yes/no):</label>
+                <input type="text" name="is_lab" required>
+                <label>Continuous Classes:</label>
+                <input type="number" name="continuous_count" required>
+                <label>Lab Classroom (if applicable):</label>
+                <input type="text" name="lab_classroom"><br>
+            </div>
+        </div>
+        <button type="button" onclick="addSubject()">Add Another Subject</button><br><br>
+
+        <h2>Teacher-Subject Allocation</h2>
+        <div id="teacher-subjects">
+            <div class="teacher-subject">
+                <label>Teacher Name:</label>
+                <input type="text" name="teacher_name" required>
+                <label>Subjects (comma-separated):</label>
+                <input type="text" name="teacher_subjects" required><br>
+            </div>
+        </div>
+        <button type="button" onclick="addTeacherSubject()">Add Another Teacher</button><br><br>
+
+        <button type="submit">Generate Timetable</button>
+    </form>
+
+    <script>
+        function addSubject() {
+            const subjectDiv = document.createElement("div");
+            subjectDiv.classList.add("subject");
+            subjectDiv.innerHTML = `
+                <label>Subject Name:</label>
+                <input type="text" name="subject_name" required>
+                <label>Hours:</label>
+                <input type="number" name="subject_hours" required>
+                <label>Is Lab (yes/no):</label>
+                <input type="text" name="is_lab" required>
+                <label>Continuous Classes:</label>
+                <input type="number" name="continuous_count" required>
+                <label>Lab Classroom (if applicable):</label>
+                <input type="text" name="lab_classroom"><br>
+            `;
+            document.getElementById("subjects").appendChild(subjectDiv);
+        }
+
+        function addTeacherSubject() {
+            const teacherDiv = document.createElement("div");
+            teacherDiv.classList.add("teacher-subject");
+            teacherDiv.innerHTML = `
+                <label>Teacher Name:</label>
+                <input type="text" name="teacher_name" required>
+                <label>Subjects (comma-separated):</label>
+                <input type="text" name="teacher_subjects" required><br>
+            `;
+            document.getElementById("teacher-subjects").appendChild(teacherDiv);
+        }
+    </script>
+</body>
+</html>
